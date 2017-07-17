@@ -1,0 +1,37 @@
+{
+  "name": "icy-app",
+  "version": "0.0.0",
+  "description": "Ironhack Icy App",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "DEBUG=icy-app:* nodemon ./bin/www",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anaamilo/icy-app.git"
+  },
+  "author": "Claudia Duarte & Ana Milojevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anaamilo/icy-app/issues"
+  },
+  "homepage": "https://github.com/anaamilo/icy-app#readme",
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "express-ejs-layouts": "^2.3.0",
+    "express-session": "^1.15.3",
+    "morgan": "~1.8.1",
+    "passport": "^0.3.2",
+    "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "mongoose": "^4.11.3",
+    "nodemon": "^1.11.0"
+  }
+}
