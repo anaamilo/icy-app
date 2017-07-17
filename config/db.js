@@ -1,3 +1,3 @@
 module.exports = {
-  dbURL: 'mongodb://localhost/icy-app'
+  dbURL: 'mongodb://localhost/icy-db'
 };

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0]}`);
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/icy-db');
 const expressLayouts = require('express-ejs-layouts');
 
 const index = require('./routes/index');
