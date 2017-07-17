@@ -5,10 +5,6 @@ const UserSchema = mongoose.Schema({
   email: String,
   age: Number,
   addres: Object,
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-   }
 
 });
 
