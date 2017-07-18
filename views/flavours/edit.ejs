@@ -7,13 +7,13 @@
   <body>
     <section>
       <h2>Edit your info</h2>
-      <form action="/flavours/<%= flavour._id %>/edit" method="post" enctype="multipart/form-data">
+      <form action="/flavours/<%= flavour._id %>/edit" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" value="<%= flavour.name %>">
         <label for="flavour">Flavour</label>
         <input type="text" name="flavour" id="flavour" value="<%= flavour.flavour %>">
         <label for="description">Description</label>
-        <textarea type="text" name="description" id="description" value="<%= flavour.description %>"></textarea>
+        <input type="text" name="description" id="description" value="<%= flavour.description %>">
         <label for="photo">Image</label>
         <input type="file" name="photo" id="photo" value="<%= flavour.picPath %>">
         <input type="submit" value="Save">

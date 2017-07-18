@@ -79,9 +79,9 @@ router.post('/:id/edit', function(req, res, next) {
   };
   console.log(updates);
   IceCream.findByIdAndUpdate(req.params.id, updates, (err, f) => {
-    if(err) { return next(err) }
+    if(err) { console.log(err) }
     console.log('It edits!');
-    res.redirect("/flavours");
+    res.redirect(`/flavours/${f._id}`);
   });
 });
 
