@@ -6,6 +6,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0]}`);
 const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/icy-db');
+
 const expressLayouts = require('express-ejs-layouts');
 const bcrypt        = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
@@ -13,13 +16,14 @@ const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require('connect-mongo')(session);
 const index = require('./routes/index');
+const users = require('./routes/users');
+const flavours = require('./routes/flavours');
 
 const authRoutes = require("./routes/auth-routes");
 
 const {dbURL} = require('./config/db');
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -67,10 +71,13 @@ passport.use(new LocalStrategy((username, password, next) => {
     return next(null, user);
   });
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
+app.use('/users', users);
+app.use('/flavours', flavours);
 
 const dburl = process.env.MONGO_DB_URL;
 debug(`Connecting to ${dbURL}`);

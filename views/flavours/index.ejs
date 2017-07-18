@@ -8,10 +8,10 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <ul>
-      <li><a href="auth/login">Login</a></li>
-      <li><a href="/auth/signup">Sign up</a></li>
-      <li><a href="/auth/logout">Logout</a></li>
+      <% flavours.forEach((icecream) => { %>
+        <li><a href="/flavours/<%= icecream.id%>"><%= icecream.name %></a></li>
+        <%  }) %>
     </ul>
-    <a href="/flavours">Check our flavours here!</a>
+    <a href="/flavours/new">Create new flavours here!</a>
   </body>
 </html>

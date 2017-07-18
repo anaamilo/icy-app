@@ -7,11 +7,10 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <ul>
-      <li><a href="auth/login">Login</a></li>
-      <li><a href="/auth/signup">Sign up</a></li>
-      <li><a href="/auth/logout">Logout</a></li>
-    </ul>
-    <a href="/flavours">Check our flavours here!</a>
+    <p>DETAIL PAGE</p>
+    <h1><%= flavour.name %></h1>
+    <img src="<%= flavour.picPath %>" alt="<%= flavour.name %>">
+    <a href="/flavours"> Go back </a>
+    <a href="/flavours/<%= flavour._id %>/edit"> Edit </a>
   </body>
 </html>
