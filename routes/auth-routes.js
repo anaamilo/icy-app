@@ -1,11 +1,8 @@
-
 var express = require('express');
 var bcrypt = require('bcrypt');
 const bcryptSalt     = 10;
 var User = require('../models/User');
 var router = express.Router();
-
-
 
 /* GET auth route login form */
 router.get('/signup', function(req, res, next) {
@@ -81,11 +78,9 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.get("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
-    // cannot access session here
-    res.redirect("/");
-  });
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("./login");
 });
 
 
