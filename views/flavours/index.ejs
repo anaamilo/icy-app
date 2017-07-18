@@ -7,6 +7,11 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <a href="/flavours">Check our flavours here!</a>
+    <ul>
+      <% flavours.forEach((icecream) => { %>
+        <li><a href="/flavours/<%= icecream.id%>"><%= icecream.name %></a></li>
+        <%  }) %>
+    </ul>
+    <a href="/flavours/new">Create new flavours here!</a>
   </body>
 </html>

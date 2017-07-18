@@ -11,6 +11,7 @@ const expressLayouts = require('express-ejs-layouts');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const flavours = require('./routes/flavours');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/flavours', flavours);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
