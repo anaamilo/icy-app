@@ -17,12 +17,16 @@ router.get('/', function(req, res, next) {
 
 // c[R]ud
 router.get('/new', function(req, res, next) {
-  res.render('flavours/new');
+  IceCream.find({}, (err, f) => {
+    res.render('flavours/new', {
+      title: 'Add a new flavour',
+      flavour: f
+    });
+  });
 });
 
 // [C]rud
 router.post('/new', upload.single('photo'), function(req, res, next) {
-  console.log("gggg")
   const f = new IceCream({
     name: req.body.name,
     flavour: req.body.flavour,
@@ -33,15 +37,14 @@ router.post('/new', upload.single('photo'), function(req, res, next) {
     picPath: `/images/uploads/${req.file.filename}`,
     picName: req.file.originalname    
   });
-  console.log(f);
   f.save((err, obj) => {
     console.log("Saved!");
-    res.redirect('/flavours/new');
+    res.redirect('/flavours');
   });
 });
 
 // c[R]ud
-router.get('/:id', function(req, res, next) {  console.log(`Se ha llamado con el parametro ${req.params.id}`);
+router.get('/:id', function(req, res, next) {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err)};
     res.render('flavours/detail', {
@@ -52,10 +55,21 @@ router.get('/:id', function(req, res, next) {  console.log(`Se ha llamado con el
 });
 
 // cr[U]d
-router.post('/:id/update', function(req, res, next) {
-  const { flavour, description, hasLactose, hasEgg, hasNuts } = req.body;
+router.get('/:id/edit', function(req, res, next) {
+  IceCream.findById(req.params.id, (err, f) => {
+    if(err){console.log(err)};
+    res.render('flavours/edit', {
+      title: 'Edit here your flavour',
+      flavour: f
+    });
+  });
+});
+
+// cr[U]d
+router.post('/:id/edit', function(req, res, next) {
+  const { name, flavour, description, hasLactose, hasEgg, hasNuts, picPath } = req.body;
   const updates = {
-    name,
+    name,        
     flavour,
     description,
     hasLactose,
@@ -63,9 +77,11 @@ router.post('/:id/update', function(req, res, next) {
     hasNuts,
     picPath
   };
+  console.log(updates);
   IceCream.findByIdAndUpdate(req.params.id, updates, (err, f) => {
     if(err) { return next(err) }
-    res.redirect(`/flavours/${f._id}`);
+    console.log('It edits!');
+    res.redirect("/flavours");
   });
 });
 

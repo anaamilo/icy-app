@@ -9,6 +9,8 @@
     <p>Welcome to <%= title %></p>
     <p>DETAIL PAGE</p>
     <h1><%= flavour.name %></h1>
+    <img src="<%= flavour.picPath %>" alt="<%= flavour.name %>">
     <a href="/flavours"> Go back </a>
+    <a href="/flavours/<%= flavour._id %>/edit"> Edit </a>
   </body>
 </html>

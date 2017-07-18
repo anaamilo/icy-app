@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <section>
-      <h2>Upload your photo</h2>
-      <form action="new" method="post" enctype="multipart/form-data">
+      <h2>Edit your info</h2>
+      <form action="/flavours/<%= flavour._id %>/edit" method="post" enctype="multipart/form-data">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" value="<%= flavour.name %>">
         <label for="flavour">Flavour</label>
-        <input type="text" name="flavour" id="flavour" value="<%= flavour.price %>">
+        <input type="text" name="flavour" id="flavour" value="<%= flavour.flavour %>">
         <label for="description">Description</label>
-        <input type="text" name="description" id="description" value="<%= flavour.description %>">
+        <textarea type="text" name="description" id="description" value="<%= flavour.description %>"></textarea>
         <label for="photo">Image</label>
         <input type="file" name="photo" id="photo" value="<%= flavour.picPath %>">
         <input type="submit" value="Save">
