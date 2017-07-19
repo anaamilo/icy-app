@@ -6,9 +6,8 @@ const UserSchema = new Schema({
   email: String,
   password: String,
   age: Number,
-  address: Object
+  address: Object,
+  isAdmin: {type: Boolean, default: true}
 });
 
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema);

@@ -12,6 +12,10 @@
         <li><a href="/flavours/<%= icecream.id%>"><%= icecream.name %></a></li>
         <%  }) %>
     </ul>
-    <a href="/flavours/new">Create new flavours here!</a>
+
+    <% if (user.isAdmin) { %>
+      <a href="/flavours/new">Create new flavours here!</a>
+    <% } %>
+
   </body>
 </html>

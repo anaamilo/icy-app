@@ -51,11 +51,10 @@ require('./passport/config');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req,res,next) => {
+app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
-// user.___ en vistas
 
 app.use('/', index);
 app.use('/auth', authRoutes);

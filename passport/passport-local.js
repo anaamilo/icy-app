@@ -9,8 +9,7 @@ const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     debug(user);
-    if (err) {
-      return next(err);
+    if (err) {return next(err);
     }
     if (!user) {
       return next(null, false, { message: "Incorrect username" });

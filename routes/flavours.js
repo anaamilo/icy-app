@@ -7,6 +7,7 @@ const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // c[R]ud
 router.get('/', (req, res, next) => {
+  console.log(req.user);
   IceCream.find({}, (err, f) => {
     if(err){console.log(err);}
     res.render('flavours/index', {
