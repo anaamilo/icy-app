@@ -18,12 +18,36 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res, next) => {
 });
 
 // c[R]ud
-router.get('/nuts', (req, res, next) => {
-  IceCream.find({hasNuts:false}, (err, f) => {
+router.post('/filter', (req, res, next) => {
+  IceCream.find(JSON.parse(req.body.filter), (err, f) => {
       if(err){console.log(err);}
       res.send(JSON.stringify(f));
   });
 });
+
+// // c[R]ud
+// router.get('/lactose', (req, res, next) => {
+//   IceCream.find({hasLactose:false}, (err, f) => {
+//       if(err){console.log(err);}
+//       res.send(JSON.stringify(f));
+//   });
+// });
+
+// // c[R]ud
+// router.get('/egg', (req, res, next) => {
+//   IceCream.find({hasEgg:false}, (err, f) => {
+//       if(err){console.log(err);}
+//       res.send(JSON.stringify(f));
+//   });
+// });
+
+// // c[R]ud
+// router.get('/nuts', (req, res, next) => {
+//   IceCream.find({hasNuts:false}, (err, f) => {
+//       if(err){console.log(err);}
+//       res.send(JSON.stringify(f));
+//   });
+// });
 
 // c[R]ud
 router.get('/new', ensureLoggedIn('/auth/login'), (req, res, next) => {
