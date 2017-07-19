@@ -37,6 +37,7 @@ router.post('/new', upload.single('photo'), function(req, res, next) {
     picPath: `/images/uploads/${req.file.filename}`,
     picName: req.file.originalname    
   });
+  console.log(f);
   f.save((err, obj) => {
     console.log("Saved!");
     res.redirect('/flavours');

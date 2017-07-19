@@ -10,13 +10,12 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/icy-db');
 
 const expressLayouts = require('express-ejs-layouts');
-const bcrypt        = require("bcrypt");
+const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require('connect-mongo')(session);
 const index = require('./routes/index');
-const users = require('./routes/users');
 const flavours = require('./routes/flavours');
 
 const authRoutes = require("./routes/auth-routes");
@@ -76,7 +75,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
-app.use('/users', users);
 app.use('/flavours', flavours);
 
 const dburl = process.env.MONGO_DB_URL;

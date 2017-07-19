@@ -1,8 +1,8 @@
-var express = require('express');
-var bcrypt = require('bcrypt');
-const bcryptSalt     = 10;
-var User = require('../models/User');
-var router = express.Router();
+const express = require('express');
+const bcrypt = require('bcrypt');
+const bcryptSalt = 10;
+const User = require('../models/User');
+const router = express.Router();
 
 /* GET auth route login form */
 router.get('/signup', function(req, res, next) {
@@ -21,11 +21,11 @@ router.post('/signup', function(req, res, next) {
       console.log("EL usuario existe");
       return res.render('signup');
     }
-    var password = req.body.password;
-    var salt = bcrypt.genSaltSync(bcryptSalt);
-    var hashPass = bcrypt.hashSync(password, salt);
+    const password = req.body.password;
+    const salt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-    var newUser = User({
+    const newUser = User({
       username:req.body.username,
       password: hashPass
     });
