@@ -5,8 +5,17 @@
   </head>
   <body>
     <section>
-      <h2> New Order </h2>
-      <a href="/orders/edit">Edit your order</a>
+      <h2>New order</h2>
+      <form action="new" method="post">
+        <label for="type">Type</label>
+        <input type="text" id="type" name="type" value="<%= order.type %>">
+        <label for="product1">Flavour 1</label>
+        <input type="text" name="product1" id="product1" value="<%= order.product1 %>">
+        <label for="product1">Flavour 2</label>
+        <input type="text" name="product2" id="product2" value="<%= order.product2 %>">
+        <label for="product1">Flavour 3</label>
+        <input type="text" name="product3" id="product3" value="<%= order.product3 %>">
+        <input type="submit" value="Save">
       </form>
     </section>
   </body>

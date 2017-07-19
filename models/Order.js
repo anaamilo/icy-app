@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   creator: {type: String},
-  composition: {type: String},
+  type: {type: String},
   product1: {type: String},
   product2: {type: String},
   product3: {type: String},

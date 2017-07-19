@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
   Order.find({}, (err, o) => {
     if(err){console.log(err);}
     res.render('orders/index', {
-      title: 'Your Order - INDEX',
+      title: 'My orders',
       orders: o
     });
   });
@@ -16,15 +16,16 @@ router.get('/', (req, res, next) => {
 router.get('/new', (req, res, next) => {
   Order.find({}, (err, o) => {
     res.render('orders/new', {
-      title: 'Add a new order',
-      orders: o
+      title: 'Create a new order',
+      order: o
     });
   });
 });
+
 router.post('/new', (req, res, next) => {
   const o = new Order({
     creator: req.body.creator,
-    composition: req.body.composition,
+    type: req.body.type,
     product1: req.body.product1,
     product2: req.body.product2,
     product3: req.body.product3,
@@ -35,15 +36,7 @@ router.post('/new', (req, res, next) => {
     res.redirect('/orders');
   });
 });
-router.get('/:id', (req, res, next) => {
-  Order.findById(req.params.id, (err, o) => {
-    if(err){console.log(err);}
-    res.render('orders/detail', {
-      title: 'Order',
-      order: o
-    });
-  });
-});
+
 router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
   Order.findById(req.params.id, (err, o) => {
     if(err){console.log(err);}
@@ -54,9 +47,9 @@ router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
   });
 });
 router.post('/:id/edit', (req, res, next) => {
-  const {composition,product1,product2,product3} = req.body;
+  const {type,product1,product2,product3} = req.body;
   const updates = {
-    composition,
+    type,
     product1,
     product2,
     product3
@@ -64,7 +57,7 @@ router.post('/:id/edit', (req, res, next) => {
   Order.findByIdAndUpdate(req.params.id, updates, (err, o) => {
     if(err) { console.log(err); }
     console.log('It edits!');
-    res.redirect(`/orders/${o._id}`);
+    res.redirect('/orders');
   });
 });
 

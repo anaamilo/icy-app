@@ -57,7 +57,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // cr[U]d
-router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
+router.get('/:id/edit', [upload.single('photo'), ensureLoggedIn('/auth/login')], (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err);}
     res.render('flavours/edit', {

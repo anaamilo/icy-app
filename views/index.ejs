@@ -7,12 +7,13 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <ul>
-      <li><a href="auth/login">Login</a></li>
-      <li><a href="/auth/signup">Sign up</a></li>
-      <li><a href="/auth/logout">Logout</a></li>
-    </ul>
-    <a href="/flavours">Check our flavours here!</a>
-    <a href="/orders">Check your orders here!</a>
+      <% if (!user) {%>
+        <a href="auth/login">Login</a>
+        <a href="/auth/signup">Sign up</a>
+      <%} else {%>
+        <a href="/auth/logout">Logout</a>
+        <a href="/flavours">Check our flavours here!</a>
+        <a href="/orders">Check your orders here!</a>
+      <% } %>
   </body>
 </html>
