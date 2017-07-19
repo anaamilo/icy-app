@@ -3,9 +3,10 @@ const IceCream = require('../models/IceCream.js');
 const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: './public/images/uploads/' });
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // c[R]ud
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   IceCream.find({}, (err, f) => {
     if(err){console.log(err)};
     res.render('flavours/index', {
@@ -16,7 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 // c[R]ud
-router.get('/new', function(req, res, next) {
+router.get('/new', (req, res, next) => {
   IceCream.find({}, (err, f) => {
     res.render('flavours/new', {
       title: 'Add a new flavour',
@@ -26,7 +27,7 @@ router.get('/new', function(req, res, next) {
 });
 
 // [C]rud
-router.post('/new', upload.single('photo'), function(req, res, next) {
+router.post('/new', upload.single('photo'), (req, res, next) => {
   const f = new IceCream({
     name: req.body.name,
     flavour: req.body.flavour,
@@ -35,9 +36,8 @@ router.post('/new', upload.single('photo'), function(req, res, next) {
     hasEgg: req.body.hasEgg,
     hasNuts: req.body.hasNuts,
     picPath: `/images/uploads/${req.file.filename}`,
-    picName: req.file.originalname    
+    picName: req.file.originalname
   });
-  console.log(f);
   f.save((err, obj) => {
     console.log("Saved!");
     res.redirect('/flavours');
@@ -45,7 +45,7 @@ router.post('/new', upload.single('photo'), function(req, res, next) {
 });
 
 // c[R]ud
-router.get('/:id', function(req, res, next) {
+router.get('/:id', (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err)};
     res.render('flavours/detail', {
@@ -56,7 +56,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 // cr[U]d
-router.get('/:id/edit', function(req, res, next) {
+router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err)};
     res.render('flavours/edit', {
@@ -67,7 +67,7 @@ router.get('/:id/edit', function(req, res, next) {
 });
 
 // cr[U]d
-router.post('/:id/edit', function(req, res, next) {
+router.post('/:id/edit', (req, res, next) => {
   const { name, flavour, description, hasLactose, hasEgg, hasNuts, picPath } = req.body;
   const updates = {
     name,        
@@ -78,7 +78,6 @@ router.post('/:id/edit', function(req, res, next) {
     hasNuts,
     picPath
   };
-  console.log(updates);
   IceCream.findByIdAndUpdate(req.params.id, updates, (err, f) => {
     if(err) { console.log(err) }
     console.log('It edits!');
@@ -87,7 +86,7 @@ router.post('/:id/edit', function(req, res, next) {
 });
 
 // cru[D]
-router.get('/:id/delete', function(req, res, next) {
+router.get('/:id/delete', (req, res, next) => {
   const id = req.params.id;
   IceCream.findByIdAndRemove(id, (err, obj) => {
     if(err){ return next(err) }

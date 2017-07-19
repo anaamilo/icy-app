@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0]}`);
 const mongoose = require('mongoose');
+const flash = require('connect-flash');
 
 mongoose.connect('mongodb://localhost/icy-db');
 
@@ -17,6 +18,7 @@ const passport = require("passport");
 const MongoStore = require('connect-mongo')(session);
 const index = require('./routes/index');
 const flavours = require('./routes/flavours');
+const User = require('./models/User');
 
 const authRoutes = require("./routes/auth-routes");
 
@@ -26,14 +28,14 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(flash());
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
-app.use('/auth', authRoutes);
+app.use(cookieParser());
 
 app.use(session({
   secret: "basic-auth-secret",
@@ -44,42 +46,25 @@ app.use(session({
   })
 }));
 
-passport.serializeUser((user, cb) => {
-  cb(null, user.id);
-});
-
-passport.deserializeUser((id, cb) => {
-  User.findOne({ "_id": id }, (err, user) => {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
-
-passport.use(new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
-
-    return next(null, user);
-  });
-}));
+require('./passport/config');
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cookieParser());
 
+app.use((req,res,next) => {
+  res.locals.user = req.user;
+  next();
+});
+// user.___ en vistas
+
+app.use('/', index);
+app.use('/auth', authRoutes);
 app.use('/flavours', flavours);
 
 const dburl = process.env.MONGO_DB_URL;
 debug(`Connecting to ${dbURL}`);
 mongoose.connect(dbURL).then( () => debug('DB Connected!'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
