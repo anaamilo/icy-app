@@ -6,7 +6,7 @@ const upload = multer({ dest: './public/images/uploads/' });
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 // c[R]ud
-router.get('/', (req, res, next) => {
+router.get('/', ensureLoggedIn('/auth/login'), (req, res, next) => {
   console.log(req.user);
   IceCream.find({}, (err, f) => {
     if(err){console.log(err);}
@@ -18,7 +18,15 @@ router.get('/', (req, res, next) => {
 });
 
 // c[R]ud
-router.get('/new', (req, res, next) => {
+router.get('/nuts', (req, res, next) => {
+  IceCream.find({hasNuts:false}, (err, f) => {
+      if(err){console.log(err);}
+      res.send(JSON.stringify(f));
+  });
+});
+
+// c[R]ud
+router.get('/new', ensureLoggedIn('/auth/login'), (req, res, next) => {
   IceCream.find({}, (err, f) => {
     res.render('flavours/new', {
       title: 'Add a new flavour',
@@ -28,7 +36,7 @@ router.get('/new', (req, res, next) => {
 });
 
 // [C]rud
-router.post('/new', upload.single('photo'), (req, res, next) => {
+router.post('/new', [upload.single('photo'), ensureLoggedIn('/auth/login')], (req, res, next) => {
   const f = new IceCream({
     name: req.body.name,
     flavour: req.body.flavour,
@@ -46,7 +54,7 @@ router.post('/new', upload.single('photo'), (req, res, next) => {
 });
 
 // c[R]ud
-router.get('/:id', (req, res, next) => {
+router.get('/:id', ensureLoggedIn('/auth/login'), (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err);}
     res.render('flavours/detail', {

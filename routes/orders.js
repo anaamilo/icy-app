@@ -1,9 +1,10 @@
 const express  = require('express');
 const Order = require('../models/Order.js');
+const IceCream = require('../models/IceCream.js')
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', ensureLoggedIn('/auth/login'), (req, res, next) => {
   Order.find({}, (err, o) => {
     if(err){console.log(err);}
     res.render('orders/index', {
@@ -13,16 +14,19 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', ensureLoggedIn('/auth/login'), (req, res, next) => {
   Order.find({}, (err, o) => {
-    res.render('orders/new', {
-      title: 'Create a new order',
-      order: o
+    IceCream.find({}, (err, i) => {
+      res.render('orders/new', {
+        title: 'Create a new order',
+        order: o,
+        flavours: i
+      });
     });
   });
 });
 
-router.post('/new', (req, res, next) => {
+router.post('/new', ensureLoggedIn('/auth/login'), (req, res, next) => {
   const o = new Order({
     creator: req.body.creator,
     type: req.body.type,
@@ -37,6 +41,10 @@ router.post('/new', (req, res, next) => {
   });
 });
 
+router.post('/price', (req, res, next) => {
+  console.log(req.body);
+})
+
 router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
   Order.findById(req.params.id, (err, o) => {
     if(err){console.log(err);}
@@ -46,6 +54,7 @@ router.get('/:id/edit', ensureLoggedIn('/auth/login'), (req, res, next) => {
     });
   });
 });
+
 router.post('/:id/edit', (req, res, next) => {
   const {type,product1,product2,product3} = req.body;
   const updates = {

@@ -6,17 +6,60 @@
   <body>
     <section>
       <h2>New order</h2>
-      <form action="new" method="post">
+      <form action="new" method="post" id="order-form">
         <label for="type">Type</label>
-        <input type="text" id="type" name="type" value="<%= order.type %>">
+        <input type="radio" name="type" value="cone" id="cone-input">Cone<br>
+        <input type="radio" name="type" value="cup" id="cup-input">Cup<br>
+        <span id="lactose">LACTOSE</span>
+        <button id="egg">EGG</button>
+        <button id="nuts">NUTS</button>
         <label for="product1">Flavour 1</label>
-        <input type="text" name="product1" id="product1" value="<%= order.product1 %>">
-        <label for="product1">Flavour 2</label>
-        <input type="text" name="product2" id="product2" value="<%= order.product2 %>">
-        <label for="product1">Flavour 3</label>
-        <input type="text" name="product3" id="product3" value="<%= order.product3 %>">
+        <div class="filter-icecream" id="filter">
+          <% flavours.forEach((icecream) => { %>
+            <input type="radio" name="flavour1" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+          <%  }) %>
+        </div>
+<!--         <input type="text" name="product1" id="product1" value="<%= order.product1 %>">-->    
+        <label for="product2">Flavour 2</label>
+        <% flavours.forEach((icecream) => { %>
+          <input type="radio" name="flavour2" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+        <%  }) %>
+<!--         <input type="text" name="product2" id="product2" value="<%= order.product2 %>"> -->
+        <label for="product3">Flavour 3</label>
+        <% flavours.forEach((icecream) => { %>
+          <input type="radio" name="flavour3" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+        <%  }) %>
+<!--         <input type="text" name="product3" id="product3" value="<%= order.product3 %>"> -->
         <input type="submit" value="Save">
       </form>
+      <input type="text" value="10" id="price" data-price="10">
     </section>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+      $('#lactose').on('click', function(){
+        $.ajax({
+          method: 'GET',
+          url: '/flavours/nuts',
+          success: showFeedback,
+          error: handleError
+        })
+        function showFeedback (res) {
+          console.log('posted');
+          console.log($("#filter").html(res));
+        }
+
+        function handleError (err) {
+          console.log('oh fail');
+          console.log(err);
+        }
+      })
+    })
+    </script>
   </body>
 </html>
+
+

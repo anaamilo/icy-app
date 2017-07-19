@@ -5,9 +5,9 @@ const IceCreamSchema = new Schema({
   name: { type: String },
   flavour: { type: String },
   description: { type: String },
-  // hasLactose: { type: Boolean, required: true },
-  // hasEgg: { type: Boolean, required: true },
-  // hasNuts: { type: Boolean, required: true },
+  hasLactose: { type: Boolean, required: true },
+  hasEgg: { type: Boolean, required: true },
+  hasNuts: { type: Boolean, required: true },
   picPath: { type: String },
   picName: { type: String } 
 });
