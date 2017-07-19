@@ -4,7 +4,6 @@ const bcryptSalt = 10;
 const User = require('../models/User');
 const router = express.Router();
 
-/* GET auth route login form */
 router.get('/signup', function(req, res, next) {
   res.render('auth/signup');
 });
@@ -42,12 +41,10 @@ router.post('/signup', function(req, res, next) {
 });
 
 
-/* GET auth route login form */
 router.get('/login', function(req, res, next) {
   res.render('auth/login');
 });
 
-/* GET auth route login form */
 router.post('/login', function(req, res, next) {
   console.log(req.body);
 

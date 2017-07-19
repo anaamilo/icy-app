@@ -17,7 +17,7 @@ const passport = require("passport");
 const MongoStore = require('connect-mongo')(session);
 const index = require('./routes/index');
 const flavours = require('./routes/flavours');
-
+const orders = require('./routes/orders');
 const authRoutes = require("./routes/auth-routes");
 
 const {dbURL} = require('./config/db');
@@ -76,6 +76,7 @@ app.use(passport.session());
 app.use(cookieParser());
 
 app.use('/flavours', flavours);
+app.use('/orders',orders);
 
 const dburl = process.env.MONGO_DB_URL;
 debug(`Connecting to ${dbURL}`);

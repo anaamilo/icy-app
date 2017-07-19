@@ -1,22 +1,15 @@
+const express = require('express');
 const mongoose = require('mongoose');
-const OrderSchema = mongoose.Schema({
+const router = express.Router();
+const Schema = mongoose.Schema;
 
-  creator: {
-    ref: User
-  },
-  composition: {
-    type: ""
-  },
-  product1: {
-    ref: IceCream
-  },
-  product2: {
-    ref: IceCream
-  },
-  product3: {
-    ref: IceCream
-  },
-  totalPrice: { }
+const OrderSchema = new Schema({
+  creator: {type: String},
+  composition: {type: String},
+  product1: {type: String},
+  product2: {type: String},
+  product3: {type: String},
+  totalPrice: {type: Number},
 
 });
 
