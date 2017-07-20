@@ -46,14 +46,6 @@ router.post('/new', [ensureLoggedIn('/auth/login'), upload.single('photo')], (re
 });
 
 // c[R]ud
-router.post('/filter', (req, res, next) => {
-  IceCream.find(JSON.parse(req.body.filter), (err, f) => {
-      if(err){console.log(err);}
-      res.send(JSON.stringify(f));
-  });
-});
-
-// c[R]ud
 router.get('/:id', ensureLoggedIn('/auth/login'), (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err);}
