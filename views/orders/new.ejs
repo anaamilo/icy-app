@@ -1,121 +1,113 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <section>
-      <h2>New order</h2>
-      <form action="new" method="post" id="order-form">
-        <label for="type">Type</label>
-        <input type="radio" name="type" value="cone" id="cone-input">Cone<br>
-        <input type="radio" name="type" value="cup" id="cup-input">Cup<br>
-        <label for="no-lactose">No lactose</label>
-        <input type="checkbox" name="no-lactose" id="no-lactose">
-        <label for="no-egg">No egg</label>
-        <input type="checkbox" name="no-egg" id="no-egg">
-        <label for="no-nuts">No nuts</label>
-        <input type="checkbox" name="no-nuts" id="no-nuts">
-        <label for="product1">Flavour 1</label>
-        <div id="filter1">
-          <% flavours.forEach((icecream) => { %>
-            <input type="radio" name="flavour1" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-          <%  }) %>
-        </div>
+<section>
+  <h2>New order</h2>
+  <form action="new" method="post" id="order-form">
+    <label for="type">Type</label>
+    <input type="radio" name="type" value="cone" id="cone-input">Cone<br>
+    <input type="radio" name="type" value="cup" id="cup-input">Cup<br>
+    <label for="no-lactose">No lactose</label>
+    <input type="checkbox" name="no-lactose" id="no-lactose">
+    <label for="no-egg">No egg</label>
+    <input type="checkbox" name="no-egg" id="no-egg">
+    <label for="no-nuts">No nuts</label>
+    <input type="checkbox" name="no-nuts" id="no-nuts">
+    <label for="product1">Flavour 1</label>
+    <div id="filter1">
+      <% flavours.forEach((icecream) => { %>
+        <input type="radio" name="flavour1" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+      <%  }) %>
+    </div>
 <!--         <input type="text" name="product1" id="product1" value="<%= order.product1 %>">-->    
-        <label for="product2">Flavour 2</label>
-        <div id="filter2">
-        <% flavours.forEach((icecream) => { %>
-          <input type="radio" name="flavour2" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-        <%  }) %>
+    <label for="product2">Flavour 2</label>
+    <div id="filter2">
+    <% flavours.forEach((icecream) => { %>
+      <input type="radio" name="flavour2" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+    <%  }) %>
 <!--         <input type="text" name="product2" id="product2" value="<%= order.product2 %>"> -->
-        <label for="product3">Flavour 3</label>
-        <div id="filter3">
-        <% flavours.forEach((icecream) => { %>
-          <input type="radio" name="flavour3" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-        <%  }) %>
+    <label for="product3">Flavour 3</label>
+    <div id="filter3">
+    <% flavours.forEach((icecream) => { %>
+      <input type="radio" name="flavour3" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
+    <%  }) %>
 <!--         <input type="text" name="product3" id="product3" value="<%= order.product3 %>"> -->
-        <input type="submit" value="Save">
-      </form>
-      <input type="text" value="10" id="price" data-price="10">
-    </section>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <script>
-    $(document).ready(function(){
-      window.filter = {};
-      $('#no-lactose').on('click', function(){
-        if ($(this).is(':checked')) {
-          window.filter.hasLactose = false;
-        } else {
-          delete window.filter.hasLactose;
-        }
-        console.log(window.filter);
-        $.ajax({
-          method: 'POST',
-          url: '/flavours/filter',
-          dataType: 'json',
-          data: {filter: JSON.stringify(window.filter)},
-          success: showFeedback,
-          error: handleError
-        })
-        function showFeedback (res) {
-          console.log(res.length);
-        }
-        function handleError (err) {
-          console.log(err);
-        }
-      })
-      $('#no-egg').on('click', function(){
-        if ($(this).is(':checked')) {
-          window.filter.hasEgg = false;
-        } else {
-          console.log("algo");
-          delete window.filter.hasEgg;
-        }
-        console.log(window.filter);
-        $.ajax({
-          method: 'POST',
-          url: '/flavours/filter',
-          dataType: 'json',
-          data: {filter: JSON.stringify(window.filter)},
-          success: showFeedback,
-          error: handleError
-        })
-        function showFeedback (res) {
-          console.log(res.length);
-        }
-        function handleError (err) {
-          console.log(err);
-        }
-      })
-      $('#no-nuts').on('click', function(){
-        if ($(this).is(':checked')) {
-          window.filter.hasNuts = false;
-        } else {
-          delete window.filter.hasNuts;
-        }
-        console.log(window.filter);
-        $.ajax({
-          method: 'POST',
-          url: '/flavours/filter',
-          dataType: 'json',
-          data: {filter: JSON.stringify(window.filter)},
-          success: showFeedback,
-          error: handleError
-        })
-        function showFeedback (res) {
-          console.log(res.length);
-        }
-        function handleError (err) {
-          console.log(err);
-        }
-      })
+    <input type="submit" value="Save">
+  </form>
+  <input type="text" value="10" id="price" data-price="10">
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+  window.filter = {};
+  $('#no-lactose').on('click', function(){
+    if ($(this).is(':checked')) {
+      window.filter.hasLactose = false;
+    } else {
+      delete window.filter.hasLactose;
+    }
+    console.log(window.filter);
+    $.ajax({
+      method: 'POST',
+      url: '/flavours/filter',
+      dataType: 'json',
+      data: {filter: JSON.stringify(window.filter)},
+      success: showFeedback,
+      error: handleError
     })
-    </script>
-  </body>
-</html>
+    function showFeedback (res) {
+      console.log(res.length);
+    }
+    function handleError (err) {
+      console.log(err);
+    }
+  })
+  $('#no-egg').on('click', function(){
+    if ($(this).is(':checked')) {
+      window.filter.hasEgg = false;
+    } else {
+      console.log("algo");
+      delete window.filter.hasEgg;
+    }
+    console.log(window.filter);
+    $.ajax({
+      method: 'POST',
+      url: '/flavours/filter',
+      dataType: 'json',
+      data: {filter: JSON.stringify(window.filter)},
+      success: showFeedback,
+      error: handleError
+    })
+    function showFeedback (res) {
+      console.log(res.length);
+    }
+    function handleError (err) {
+      console.log(err);
+    }
+  })
+  $('#no-nuts').on('click', function(){
+    if ($(this).is(':checked')) {
+      window.filter.hasNuts = false;
+    } else {
+      delete window.filter.hasNuts;
+    }
+    console.log(window.filter);
+    $.ajax({
+      method: 'POST',
+      url: '/flavours/filter',
+      dataType: 'json',
+      data: {filter: JSON.stringify(window.filter)},
+      success: showFeedback,
+      error: handleError
+    })
+    function showFeedback (res) {
+      console.log(res.length);
+    }
+    function handleError (err) {
+      console.log(err);
+    }
+  })
+})
+</script>
 
 

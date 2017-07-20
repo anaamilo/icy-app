@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <p>DETAIL PAGE</p>
-    <h1><%= flavour.name %></h1>
-    <img src="<%= flavour.picPath %>" alt="<%= flavour.name %>">
-    <a href="/flavours"> Go back </a>
-    <a href="/flavours/<%= flavour._id %>/edit"> Edit </a>
-  </body>
-</html>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<p>DETAIL PAGE</p>
+<h1><%= flavour.name %></h1>
+<img src="<%= flavour.picPath %>" alt="<%= flavour.name %>">
+<a href="/flavours"> Go back </a>
+<a href="/flavours/<%= flavour._id %>/edit"> Edit </a>

@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.flavour-list {
+  list-style-type: none; }
+  .flavour-list .item {
+    display: inline-block;
+    margin: 10px;
+    width: 120px;
+    height: 120px; }
+    .flavour-list .item.coffee {
+      background: linear-gradient(to top, #b3563d 0%, #88430e 100%); }
+    .flavour-list .item.gianduia {
+      background: linear-gradient(to right, #844c3c 0%, #865c3c 100%); }
+    .flavour-list .item.chocolate {
+      background: linear-gradient(to top, #633925 0%, #694a33 100%); }
+    .flavour-list .item.choc-sorbet {
+      background: linear-gradient(to top, #6f5750 0%, #524943 100%); }
+    .flavour-list .item.nougat {
+      background: linear-gradient(to top, #bf8b60 0%, #efb576 100%); }
+    .flavour-list .item.dulce {
+      background: linear-gradient(to top, #b37c37 0%, #d29d62 100%); }
+    .flavour-list .item.banana {
+      background: linear-gradient(to top, #eff1aa 0%, #f1eec9 100%); }
+    .flavour-list .item.coconut {
+      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); }
+    .flavour-list .item.peach {
+      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); }
+    .flavour-list .item.vanilla {
+      background: linear-gradient(135deg, #fdfcfb 0%, #e2dcc3 100%); }
+    .flavour-list .item.cinnamon {
+      background: linear-gradient(135deg, #f9f1e9 0%, #d2beae 100%); }
+    .flavour-list .item.milk {
+      background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); }
+    .flavour-list .item.mascarpone {
+      background: linear-gradient(to top, #efeeec 0%, #e9e9e7 100%); }
+    .flavour-list .item.mint {
+      background: linear-gradient(to right, #aefbd0 0%, #b4e6d8 100%); }
+    .flavour-list .item.raspberry {
+      background: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%); }
+    .flavour-list .item.hazelnut {
+      background: linear-gradient(to top, #c79081 0%, #dfa579 100%); }
+    .flavour-list .item.pistachio {
+      background: linear-gradient(120deg, #d4fc79 0%, #b0e0b6 100%); }
+    .flavour-list .item.lemon {
+      background: linear-gradient(60deg, #ecfdaa 0%, #f2f767 100%); }
+    .flavour-list .item.strawberry {
+      background: linear-gradient(to right, #fb414b 60%, #f35c45 100%); }
+    .flavour-list .item.mascarpone2 {
+      background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255, 255, 255, 0.5) 47%, rgba(0, 0, 0, 0.5) 100%); }

@@ -25,6 +25,8 @@ const authRoutes = require("./routes/auth-routes");
 const {dbURL} = require('./config/db');
 const app = express();
 
+app.use(expressLayouts);
+app.set('layout', 'layout/main');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <ul>
-      <% orders.forEach((order) => { %>
-        <li>
-          <span><%= order.type %></span>
-          <a href="/orders/<%= order.id %>/edit">Edit this order</a>
-        </li>
-        <%  }) %>
-    </ul>
-    <a href="/orders/new">Create a New Order</a>
-  </body>
-</html>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<ul>
+  <% orders.forEach((order) => { %>
+    <li>
+      <span><%= order.type %></span>
+      <a href="/orders/<%= order.id %>/edit">Edit this order</a>
+    </li>
+    <%  }) %>
+</ul>
+<a href="/orders/new">Create a New Order</a>
