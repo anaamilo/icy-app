@@ -24,31 +24,6 @@ router.post('/filter', (req, res, next) => {
       res.send(JSON.stringify(f));
   });
 });
-
-// // c[R]ud
-// router.get('/lactose', (req, res, next) => {
-//   IceCream.find({hasLactose:false}, (err, f) => {
-//       if(err){console.log(err);}
-//       res.send(JSON.stringify(f));
-//   });
-// });
-
-// // c[R]ud
-// router.get('/egg', (req, res, next) => {
-//   IceCream.find({hasEgg:false}, (err, f) => {
-//       if(err){console.log(err);}
-//       res.send(JSON.stringify(f));
-//   });
-// });
-
-// // c[R]ud
-// router.get('/nuts', (req, res, next) => {
-//   IceCream.find({hasNuts:false}, (err, f) => {
-//       if(err){console.log(err);}
-//       res.send(JSON.stringify(f));
-//   });
-// });
-
 // c[R]ud
 router.get('/new', ensureLoggedIn('/auth/login'), (req, res, next) => {
   IceCream.find({}, (err, f) => {
@@ -65,14 +40,13 @@ router.post('/new', [upload.single('photo'), ensureLoggedIn('/auth/login')], (re
     name: req.body.name,
     flavour: req.body.flavour,
     description: req.body.description,
-    hasLactose: req.body.hasLactose,
-    hasEgg: req.body.hasEgg,
-    hasNuts: req.body.hasNuts,
+    hasLactose: req.body.no_lactose === undefined ? false : true,
+    hasEgg: req.body.no_egg === undefined ? false : true,
+    hasNuts: req.body.no_nuts=== undefined ? false : true,
     picPath: `/images/uploads/${req.file.filename}`,
     picName: req.file.originalname
   });
   f.save((err, obj) => {
-    console.log("Saved!");
     res.redirect('/flavours');
   });
 });
@@ -89,7 +63,7 @@ router.get('/:id', ensureLoggedIn('/auth/login'), (req, res, next) => {
 });
 
 // cr[U]d
-router.get('/:id/edit', [upload.single('photo'), ensureLoggedIn('/auth/login')], (req, res, next) => {
+router.get('/:id/edit',[ensureLoggedIn('/auth/login'),upload.single('photo')], (req, res, next) => {
   IceCream.findById(req.params.id, (err, f) => {
     if(err){console.log(err);}
     res.render('flavours/edit', {
@@ -101,16 +75,16 @@ router.get('/:id/edit', [upload.single('photo'), ensureLoggedIn('/auth/login')],
 
 // cr[U]d
 router.post('/:id/edit', (req, res, next) => {
-  const { name, flavour, description, hasLactose, hasEgg, hasNuts, picPath } = req.body;
-  const updates = {
-    name,
-    flavour,
-    description,
-    hasLactose,
-    hasEgg,
-    hasNuts,
-    picPath
-  };
+  const updates = ({
+    name: req.body.name,
+    flavour: req.body.flavour,
+    description: req.body.description,
+    hasLactose: req.body.no_lactose === undefined ? false : true,
+    hasEgg: req.body.no_egg === undefined ? false : true,
+    hasNuts: req.body.no_nuts === undefined ? false : true,
+    picPath: `/images/uploads/${req.file.filename}`,
+    picName: req.file.originalname
+  });
   IceCream.findByIdAndUpdate(req.params.id, updates, (err, f) => {
     if(err) { console.log(err); }
     console.log('It edits!');
