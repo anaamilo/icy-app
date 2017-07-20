@@ -1,34 +1,41 @@
 <div class="row">
-    <div class="col-sm-6 col-md-offset-3">
-      <form action="signup" method="post">
-
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="text" name="password" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="age">Age</label>
-          <input type="number" name="age" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" name="address" class="form-control">
-        </div>
-
-
-        <button type="submit">Sign up</button>
-      </form>
+ <form class="col s12" action="signup" method="post">
+   <div class="row">
+     <div class="input-field col s6">
+       <input id="last_name" type="text" class="validate" autocomplete="off" name="username">
+       <label for="last_name">User name</label>
+     </div>
+   </div>
+   <div class="row">
+     <div class="input-field col s6">
+       <input id="password" type="password" class="validate" autocomplete="off" name="email">
+       <label for="password">Password</label>
+     </div>
+   </div>
+   <div class="row">
+     <div class="input-field col s6">
+       <input id="email" type="email" class="validate" autocomplete="off" name="email">
+       <label for="email">Email</label>
+     </div>
+   </div>
+   <div class="row">
+     <div class="input-field col s1">
+       <input id="age" type="number" class="validate" autocomplete="off" name="age">
+       <label for="age">Age</label>
+     </div>
+   </div>
+   <div class="row">
+     <div class="input-field col s1">
+       <input id="address" type="text" class="validate" autocomplete="off" name="address">
+       <label for="address">Address</label>
+     </div>
+   </div>
+    <div class="row">
+      <input type="submit" class="waves-effect waves-light red lighten-4 btn-large" value="Sign up">
     </div>
-  </div>
+ </form>
+</div>
 
-  <% if (typeof errorMessage !== "undefined") { %>
-     <div class="error-message"><%= errorMessage %></div>
-   <% } %>
+<% if (typeof errorMessage !== "undefined") { %>
+  <div class="error-message"><%= errorMessage %></div>
+<% } %>

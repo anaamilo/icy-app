@@ -12,32 +12,10 @@
         <a href="/auth/signup">Sign up</a>
       <%} else {%>
         <a href="/auth/logout">Logout</a>
-        <a href="/flavours">Check our flavours here!</a>
+        <% if (user.isAdmin) { %>
+          <a href="/flavours">Check our flavours here!</a>
+        <% } %>
         <a href="/orders">Check your orders here!</a>
       <% } %>
-
-    <ul class="flavour-list">
-      <li class="item coconut"></li>
-      <li class="item peach"></li>
-      <li class="item vanilla"></li>
-      <li class="item cinnamon"></li>
-      <li class="item milk"></li>
-      <li class="item mascarpone"></li>
-      <li class="item mascarpone2"></li>
-      <li class="item raspberry"></li>
-      <li class="item hazelnut"></li>
-      <li class="item coffee"></li>
-      <li class="item gianduia"></li>
-      <li class="item chocolate"></li>
-      <li class="item choco-sorbet"></li>
-      <li class="item nougat"></li>
-      <li class="item dulce"></li>
-      <li class="item banana"></li>
-      <li class="item mint"></li>
-      <li class="item pistachio"></li>
-      <li class="item lemon"></li>
-      <li class="item strawberry"></li>
-      <li class="item coconut"></li>
-    </ul>
   </body>
 </html>

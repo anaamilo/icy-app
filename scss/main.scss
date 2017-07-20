@@ -16,6 +16,7 @@ body {
 
     width: 120px;
     height: 120px;
+    border-radius: 50%;
 
     &.coffee { @include grad(to top, #b3563d, 0%, #88430e, 100%); }
     &.gianduia { @include grad(to right, #844c3c, 0%, #865c3c, 100%); }
@@ -42,4 +43,14 @@ body {
       background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
     }
   }
+}
+
+.order-list > * {
+  display: block;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: transparent!important;
 }

@@ -8,7 +8,8 @@ body {
     display: inline-block;
     margin: 10px;
     width: 120px;
-    height: 120px; }
+    height: 120px;
+    border-radius: 50%; }
     .flavour-list .item.coffee {
       background: linear-gradient(to top, #b3563d 0%, #88430e 100%); }
     .flavour-list .item.gianduia {
@@ -49,3 +50,11 @@ body {
       background: linear-gradient(to right, #fb414b 60%, #f35c45 100%); }
     .flavour-list .item.mascarpone2 {
       background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255, 255, 255, 0.5) 47%, rgba(0, 0, 0, 0.5) 100%); }
+
+.order-list > * {
+  display: block; }
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: transparent !important; }

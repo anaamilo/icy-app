@@ -1,11 +1,16 @@
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
-<ul>
+<ul class="flavour-list">
   <% flavours.forEach((icecream) => { %>
-    <li><a href="/flavours/<%= icecream.id%>"><%= icecream.name %></a></li>
+    <li class="item <%= icecream.flavour%>">
+      <a href="/flavours/<%= icecream.id%>"> <%= icecream.name %> </a>
+      <a href="/flavours/<%= icecream.id%>/delete"> Delete </a>
+    </li>
     <%  }) %>
 </ul>
 
 <% if (user.isAdmin) { %>
   <a href="/flavours/new">Create new flavours here!</a>
 <% } %>
+
+<a href="/"> Go Back </a>

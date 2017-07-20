@@ -4,8 +4,9 @@
   <% orders.forEach((order) => { %>
     <li>
       <span><%= order.type %></span>
-      <a href="/orders/<%= order.id %>/edit">Edit this order</a>
+      <a href="/orders/<%= order.id %>/delete">Delete this order</a>
     </li>
     <%  }) %>
 </ul>
 <a href="/orders/new">Create a New Order</a>
+<a href="/flavours"> Go Back </a>

@@ -11,27 +11,71 @@
     <label for="no-nuts">No nuts</label>
     <input type="checkbox" name="no-nuts" id="no-nuts">
     <label for="product1">Flavour 1</label>
-    <div id="filter1">
+    <ul class="flavour-list">
       <% flavours.forEach((icecream) => { %>
-        <input type="radio" name="flavour1" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-      <%  }) %>
-    </div>
-<!--         <input type="text" name="product1" id="product1" value="<%= order.product1 %>">-->    
-    <label for="product2">Flavour 2</label>
+        <li class="item <%= icecream.flavour%>">
+          <a href="/flavours/<%= icecream.id%>"> <%= icecream.name %> </a>
+          <a href="/flavours/<%= icecream.id%>/delete"> Delete </a>
+        </li>
+        <%  }) %>
+    </ul>
+    <% flavours.forEach((icecream) => { %>
+        <label class="order-list">
+        <input type="radio" 
+               name="flavour1" 
+               value="<%= icecream.name %>" 
+               id="<%= icecream.id %>"
+               <% if(!icecream.hasLactose) { %>
+               <%= "data-nolactose" %>
+               <% } %>
+               <% if(!icecream.hasEgg) { %>
+               <%= "data-noegg" %>
+               <% } %>
+               <% if(!icecream.hasNuts) { %>
+               <%= "data-nonuts" %>
+               <% } %>
+        ><%= icecream.name %>
+        </label>
+    <%  }) %>
+
+<!--     <label for="product2">Flavour 2</label>
     <div id="filter2">
     <% flavours.forEach((icecream) => { %>
       <input type="radio" name="flavour2" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
     <%  }) %>
-<!--         <input type="text" name="product2" id="product2" value="<%= order.product2 %>"> -->
     <label for="product3">Flavour 3</label>
     <div id="filter3">
     <% flavours.forEach((icecream) => { %>
       <input type="radio" name="flavour3" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-    <%  }) %>
-<!--         <input type="text" name="product3" id="product3" value="<%= order.product3 %>"> -->
+    <%  }) %> -->
     <input type="submit" value="Save">
   </form>
   <input type="text" value="10" id="price" data-price="10">
 </section>
+
+<script>
+  $(function(){
+    $("#no-lactose").on('change', function(){
+      $('[data-nolactose]').closest('label').toggle();
+    });
+    $("#no-egg").on('change', function(){
+      $('[data-noegg]').closest('label').toggle();
+    });
+    $("#no-nuts").on('change', function(){
+      $('[data-nonuts]').closest('label').toggle();
+    })
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 
