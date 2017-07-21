@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -7,8 +8,6 @@ const bodyParser = require('body-parser');
 const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0]}`);
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
-
-mongoose.connect('mongodb://localhost/icy-db');
 
 const expressLayouts = require('express-ejs-layouts');
 const bcrypt = require("bcrypt");
@@ -22,7 +21,6 @@ const orders = require('./routes/orders');
 const User = require('./models/User');
 const authRoutes = require("./routes/auth-routes");
 
-const {dbURL} = require('./config/db');
 const app = express();
 
 app.use(expressLayouts);
@@ -63,9 +61,7 @@ app.use('/auth', authRoutes);
 app.use('/flavours', flavours);
 app.use('/orders',orders);
 
-const dburl = process.env.MONGO_DB_URL;
-debug(`Connecting to ${dbURL}`);
-mongoose.connect(dbURL).then( () => debug('DB Connected!'));
+mongoose.connect(process.env.MONGO_DB_URL).then( () => debug('DB Connected!'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
