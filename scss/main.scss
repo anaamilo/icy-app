@@ -16,11 +16,7 @@ body {
     display: inline-block;
     margin: 10px;
     position: relative;
-
-    &:hover {
-      cursor: pointer;
-    }
-
+    
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -90,8 +86,16 @@ nav {
 
 .container {
   &.main {
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 80px;
+    &.home {
+      padding-top: 160px;
+    }
   }
+}
+
+*:focus {
+  outline: 0;
 }
 
 input:-webkit-autofill,

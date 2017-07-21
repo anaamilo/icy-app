@@ -11,8 +11,6 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%; }
-    .flavour-list .item:hover {
-      cursor: pointer; }
     .flavour-list .item.coffee {
       background: linear-gradient(to top, #b3563d 0%, #88430e 100%); }
     .flavour-list .item.gianduia {
@@ -82,7 +80,13 @@ nav {
   box-shadow: none !important; }
 
 .container.main {
-  padding-top: 100px; }
+  padding-top: 50px;
+  padding-bottom: 80px; }
+  .container.main.home {
+    padding-top: 160px; }
+
+*:focus {
+  outline: 0; }
 
 input:-webkit-autofill,
 textarea:-webkit-autofill,

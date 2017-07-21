@@ -1,12 +1,14 @@
 const User = require('./User');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/icy-db')
+const bcrypt = require('bcrypt');
+
+mongoose.connect("mongodb://admin:admin@ds115493.mlab.com:15493/icy-db")
   .then(() => {
     let users = [
       {
         username: 'admin',
         email: 'admin@icy.com',
-        password: '1234',
+        password: bcrypt.hashSync("1234", bcrypt.genSaltSync(10), null),
         age: 1,
         address: 'New St. 10',
         isAdmin: true

@@ -8,7 +8,7 @@ const debug = require('debug')(`icy-app:${path.basename(__filename).split('.')[0
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
-    debug(user);
+    //debug(user);
     if (err) {return next(err);
     }
     if (!user) {
@@ -17,7 +17,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
-    debug('you are logged in');
+    //debug('you are logged in');
     return next(null, user);
   });
 }));

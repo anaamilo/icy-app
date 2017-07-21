@@ -1,6 +1,6 @@
 const IceCream = require('./IceCream');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/icy-db')
+mongoose.connect("mongodb://admin:admin@ds115493.mlab.com:15493/icy-db")
   .then(() => {
     let iceCreams = [
       {
