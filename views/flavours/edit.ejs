@@ -1,20 +1,59 @@
-<section>
-  <h2>Edit your info</h2>
-  <form action="/flavours/<%= flavour._id %>/edit" method="POST">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" value="<%= flavour.name %>">
-    <label for="flavour">Flavour</label>
-    <input type="text" name="flavour" id="flavour" value="<%= flavour.flavour %>">
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description" value="<%= flavour.description %>">
-    <label for="photo">Image</label>
-    <input type="file" name="photo" id="photo" value="<%= flavour.picPath %>">
-    <label for="no-lactose">No lactose</label>
-    <input type="checkbox" name="no_lactose" id="no_lactose" <% if(!flavour.hasLactose){%>checked<%}%>>
-    <label for="no-egg">No egg</label>
-    <input type="checkbox" name="no_egg" id="no_egg" <% if(!flavour.hasEgg){%>checked<%}%>>
-    <label for="no-nuts">No nuts</label>
-    <input type="checkbox" name="no_nuts" id="no_nuts" <% if(!flavour.hasNuts){%>checked<%}%>>
-    <input type="submit" value="Save">
-  </form>
-</section>
+<div class="container main">
+    <div class="row">
+      <div class="col m8 s12">
+        <h3 class="custom-text">Edit the <%= flavour.name %> flavour.</h3>
+      </div>
+    </div>
+    <form class="col s12" action="/new" method="post" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field">
+              <input id="name" type="text" class="validate" autocomplete="off" name="name" value="<%= flavour.name %>">
+              <label for="name">Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="flavour" type="text" class="validate" autocomplete="off" name="flavour" value="<%= flavour.flavour %>">
+              <label for="flavour">Flavour</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="description" type="text" class="validate" autocomplete="off" name="description" value="<%= flavour.description %>">
+              <label for="description">Description</label>
+            </div>
+          </div>
+          <div class="row">
+              <div class="file-field input-field">
+                <div class="btn red lighten-4 z-depth-0">
+                  <span>Add an image</span>
+                  <input type="file" id="photo" name="photo" value="<%= flavour.picPath %>">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col">
+                <input type="checkbox" class="checkbox-custom" name="no_lactose" id="nolactose" <% if(!flavour.hasLactose){%>checked<%}%>>
+                <label for="nolactose">No lactose</label>
+            </div>
+            <div class="col">
+                <input type="checkbox" class="checkbox-custom" name="no_egg" id="noegg" <% if(!flavour.hasEgg){%>checked<%}%>>
+                <label for="noegg">No egg</label>
+            </div>
+            <div class="col">
+                <input type="checkbox" class="checkbox-custom" name="no_nuts" id="nonuts" <% if(!flavour.hasNuts){%>checked<%}%>>
+                <label for="nonuts">No nuts</label>
+            </div>
+          </div>
+          <div class="row">
+            <input type="submit" class="waves-effect waves-light red lighten-4 btn-large z-depth-0" value="Save">
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

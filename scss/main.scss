@@ -1,3 +1,5 @@
+$icy: #fecccc;
+
 body { 
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -13,6 +15,11 @@ body {
   .item {
     display: inline-block;
     margin: 10px;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     width: 120px;
     height: 120px;
@@ -43,14 +50,117 @@ body {
       background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
     }
   }
+
+  .chip {
+    position: absolute!important;
+    bottom: 0!important;
+    font-size: 12px!important;
+    padding: 0 8px!important;
+    .close {
+      padding-left: 0!important;
+    }
+    &.delete {
+      top: 0!important;
+      right: 0!important;
+      bottom: inherit!important;
+      a {
+        color: gray;
+      }
+    }
+  }
 }
 
 .order-list > * {
   display: block;
 }
 
+.order-list {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.custom-text {
+  color: $icy;
+}
+
+nav {
+  box-shadow: none!important;
+}
+
+.container {
+  &.main {
+    padding-top: 100px;
+  }
+}
+
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
   background-color: transparent!important;
+}
+
+.input-field input:focus + label {
+ color: $icy !important;
+}
+
+.input-field input:focus {
+ border-bottom: 1px solid $icy !important;
+ box-shadow: 0 1px 0 0 $icy !important
+}
+
+.btn-large {
+  border: 1px solid transparent!important;
+}
+
+.btn-large:hover {
+  border: 1px solid gray!important;
+  background-color: white!important;
+  color: gray!important;
+}
+
+.btn-large.red.lighten-4 {
+  border: 1px solid transparent!important;
+}
+
+.btn-large.red.lighten-4:hover {
+  background-color: white!important;
+  border: 1px solid gray!important;
+  color: gray!important;
+}
+
+.checkbox-custom[type="checkbox"].filled-in:checked + label:after{
+  border: 2px solid $icy;
+  background-color: $icy;
+}
+
+.collapsible span.badge {
+  margin-top: 0!important;
+}
+
+span.badge {
+  font-size: 10px!important;
+  text-transform: uppercase!important;
+  letter-spacing: 1px!important;
+  margin-right: 20px!important;
+}
+
+.uppered {
+  text-transform: capitalize;
+}
+
+@media (max-width: 600px) {
+  .icy-logo {
+    max-width: 50px;
+  }
+  h3 {
+    font-size: 34px!important;
+  }
+  .flavour-list .item {
+    width: 100px;
+    height: 100px;
+    .chip {
+      font-size: 10px!important;
+    }
+  }
 }

@@ -1,16 +1,44 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<ul class="flavour-list">
-  <% flavours.forEach((icecream) => { %>
-    <li class="item <%= icecream.flavour%>">
-      <a href="/flavours/<%= icecream.id%>"> <%= icecream.name %> </a>
-      <a href="/flavours/<%= icecream.id%>/delete"> Delete </a>
-    </li>
-    <%  }) %>
-</ul>
+<nav>
+  <div class="nav-wrapper grey lighten-5">
+    <a href="/" class="brand-logo">
+      <span class="row">
+        <span class="col">
+          <img src="/images/icy-cone.png" alt="Icy cone icon" height=40>
+        </span>
+      </span>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="/" class="grey-text">Go back</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-<% if (user.isAdmin) { %>
-  <a href="/flavours/new">Create new flavours here!</a>
-<% } %>
-
-<a href="/"> Go Back </a>
+<div class="container main">
+  <div class="row">
+    <div class="col m8 s12">
+      <h3 class="custom-text">Edit your flavours and add new ones here.</h3>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="flavour-list">
+      <% flavours.forEach((icecream) => { %>
+        <li class="item <%= icecream.flavour%>">
+          <a href="/flavours/<%= icecream.id%>"> 
+            <div class="chip red lighten-4"><%= icecream.name %></div>
+            <div class="chip red lighten-4 delete">
+              <a href="/flavours/<%=icecream.id%>/delete">
+              <i class="close material-icons">close</i></a>
+            </div>
+          </a>
+        </li>
+        <%  }) %>
+    </ul>
+  </div>
+  <div class="row">
+    <% if (user.isAdmin) { %>
+      <a href="/flavours/new" class="waves-effect waves-light red lighten-4 btn-large z-depth-0"><i class="material-icons left">add</i>Add new flavour</a>
+    <% } %>
+  </div>
+</div>

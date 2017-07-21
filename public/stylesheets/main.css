@@ -7,9 +7,12 @@ body {
   .flavour-list .item {
     display: inline-block;
     margin: 10px;
+    position: relative;
     width: 120px;
     height: 120px;
     border-radius: 50%; }
+    .flavour-list .item:hover {
+      cursor: pointer; }
     .flavour-list .item.coffee {
       background: linear-gradient(to top, #b3563d 0%, #88430e 100%); }
     .flavour-list .item.gianduia {
@@ -50,11 +53,88 @@ body {
       background: linear-gradient(to right, #fb414b 60%, #f35c45 100%); }
     .flavour-list .item.mascarpone2 {
       background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255, 255, 255, 0.5) 47%, rgba(0, 0, 0, 0.5) 100%); }
+  .flavour-list .chip {
+    position: absolute !important;
+    bottom: 0 !important;
+    font-size: 12px !important;
+    padding: 0 8px !important; }
+    .flavour-list .chip .close {
+      padding-left: 0 !important; }
+    .flavour-list .chip.delete {
+      top: 0 !important;
+      right: 0 !important;
+      bottom: inherit !important; }
+      .flavour-list .chip.delete a {
+        color: gray; }
 
 .order-list > * {
   display: block; }
+
+.order-list {
+  width: 100%;
+  height: 100%;
+  display: block; }
+
+.custom-text {
+  color: #fecccc; }
+
+nav {
+  box-shadow: none !important; }
+
+.container.main {
+  padding-top: 100px; }
 
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
   background-color: transparent !important; }
+
+.input-field input:focus + label {
+  color: #fecccc !important; }
+
+.input-field input:focus {
+  border-bottom: 1px solid #fecccc !important;
+  box-shadow: 0 1px 0 0 #fecccc !important; }
+
+.btn-large {
+  border: 1px solid transparent !important; }
+
+.btn-large:hover {
+  border: 1px solid gray !important;
+  background-color: white !important;
+  color: gray !important; }
+
+.btn-large.red.lighten-4 {
+  border: 1px solid transparent !important; }
+
+.btn-large.red.lighten-4:hover {
+  background-color: white !important;
+  border: 1px solid gray !important;
+  color: gray !important; }
+
+.checkbox-custom[type="checkbox"].filled-in:checked + label:after {
+  border: 2px solid #fecccc;
+  background-color: #fecccc; }
+
+.collapsible span.badge {
+  margin-top: 0 !important; }
+
+span.badge {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-right: 20px !important; }
+
+.uppered {
+  text-transform: capitalize; }
+
+@media (max-width: 600px) {
+  .icy-logo {
+    max-width: 50px; }
+  h3 {
+    font-size: 34px !important; }
+  .flavour-list .item {
+    width: 100px;
+    height: 100px; }
+    .flavour-list .item .chip {
+      font-size: 10px !important; } }

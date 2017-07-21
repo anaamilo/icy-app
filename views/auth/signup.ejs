@@ -1,39 +1,43 @@
-<div class="row">
- <form class="col s12" action="signup" method="post">
-   <div class="row">
-     <div class="input-field col s6">
-       <input id="last_name" type="text" class="validate" autocomplete="off" name="username">
-       <label for="last_name">User name</label>
-     </div>
-   </div>
-   <div class="row">
-     <div class="input-field col s6">
-       <input id="password" type="password" class="validate" autocomplete="off" name="email">
-       <label for="password">Password</label>
-     </div>
-   </div>
-   <div class="row">
-     <div class="input-field col s6">
-       <input id="email" type="email" class="validate" autocomplete="off" name="email">
-       <label for="email">Email</label>
-     </div>
-   </div>
-   <div class="row">
-     <div class="input-field col s1">
-       <input id="age" type="number" class="validate" autocomplete="off" name="age">
-       <label for="age">Age</label>
-     </div>
-   </div>
-   <div class="row">
-     <div class="input-field col s1">
-       <input id="address" type="text" class="validate" autocomplete="off" name="address">
-       <label for="address">Address</label>
-     </div>
-   </div>
+<div class="container main">
+  <form class="col s12" action="/auth/login" method="POST">
     <div class="row">
-      <input type="submit" class="waves-effect waves-light red lighten-4 btn-large" value="Sign up">
+      <div class="col s6 offset-s3">
+        <div class="row">
+          <div class="input-field">
+            <input id="last_name" type="text" class="validate" autocomplete="off" name="username">
+            <label for="last_name">User name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input id="password" type="password" class="validate" autocomplete="off" name="email">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input id="email" type="email" class="validate" autocomplete="off" name="email">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input id="age" type="number" class="validate" autocomplete="off" name="age">
+            <label for="age">Age</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input id="address" type="text" class="validate" autocomplete="off" name="address">
+            <label for="address">Address</label>
+          </div>
+        </div>
+        <div class="row">
+          <input type="submit" class="waves-effect waves-light red lighten-4 btn-large z-depth-0" value="Sign up">
+        </div>
+      </div>
     </div>
- </form>
+  </form>
 </div>
 
 <% if (typeof errorMessage !== "undefined") { %>

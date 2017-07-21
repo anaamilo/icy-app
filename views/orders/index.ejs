@@ -1,12 +1,38 @@
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<ul>
-  <% orders.forEach((order) => { %>
+<div class="container main">
+  <div class="row">
+    <div class="col s12 m8">
+      <h3 class="custom-text">Your orders</h3>
+    </div>
+  </div>
+  <ul class="collapsible" data-collapsible="accordion">
     <li>
-      <span><%= order.type %></span>
-      <a href="/orders/<%= order.id %>/delete">Delete this order</a>
+      <div class="collapsible-header"><span class="badge red lighten-3 white-text">PROCESSING</span><span class="uppered">Cup</span></div>
+      <div class="collapsible-body">
+        <ul>
+          <li>Dulce de leche</li>
+          <li>Cinnamon</li>
+          <li>Gianduia</li>
+        </ul>
+      </div>
     </li>
-    <%  }) %>
-</ul>
-<a href="/orders/new">Create a New Order</a>
-<a href="/flavours"> Go Back </a>
+    <% orders.forEach((order) => { %>
+      <li>
+        <div class="collapsible-header"><span class="badge red lighten-5 grey-text">IN QUEUE</span><span class="uppered"><%= order.type %></span></div>
+        <div class="collapsible-body">
+          <ul>
+            <li>Chocolate</li>
+            <li>Gianduia</li>
+            <li>Raspberry</li>
+          </ul>
+        </div>
+      </li>
+      <%  }) %>
+  </ul>
+  <div class="row">
+    <div class="col">
+      <a href="/orders/new" class="waves-effect waves-light red lighten-4 btn-large z-depth-0">New order</a>
+      <a href="/flavours" class="waves-effect waves-light red lighten-4 btn-large z-depth-0">Go back</a>
+    </div>
+  </div>
+</div>
+

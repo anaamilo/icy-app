@@ -1,76 +1,80 @@
-<section>
-  <h2>New order</h2>
-  <form action="new" method="post" id="order-form">
-    <label for="type">Type</label>
-    <input type="radio" name="type" value="cone" id="cone-input">Cone<br>
-    <input type="radio" name="type" value="cup" id="cup-input">Cup<br>
-    <label for="no-lactose">No lactose</label>
-    <input type="checkbox" name="no-lactose" id="no-lactose">
-    <label for="no-egg">No egg</label>
-    <input type="checkbox" name="no-egg" id="no-egg">
-    <label for="no-nuts">No nuts</label>
-    <input type="checkbox" name="no-nuts" id="no-nuts">
-    <label for="product1">Flavour 1</label>
-    <ul class="flavour-list">
-      <% flavours.forEach((icecream) => { %>
-        <li class="item <%= icecream.flavour%>">
-          <a href="/flavours/<%= icecream.id%>"> <%= icecream.name %> </a>
-          <a href="/flavours/<%= icecream.id%>/delete"> Delete </a>
-        </li>
-        <%  }) %>
-    </ul>
-    <% flavours.forEach((icecream) => { %>
-        <label class="order-list">
-        <input type="radio" 
-               name="flavour1" 
-               value="<%= icecream.name %>" 
-               id="<%= icecream.id %>"
-               <% if(!icecream.hasLactose) { %>
-               <%= "data-nolactose" %>
-               <% } %>
-               <% if(!icecream.hasEgg) { %>
-               <%= "data-noegg" %>
-               <% } %>
-               <% if(!icecream.hasNuts) { %>
-               <%= "data-nonuts" %>
-               <% } %>
-        ><%= icecream.name %>
-        </label>
-    <%  }) %>
-
-<!--     <label for="product2">Flavour 2</label>
-    <div id="filter2">
-    <% flavours.forEach((icecream) => { %>
-      <input type="radio" name="flavour2" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-    <%  }) %>
-    <label for="product3">Flavour 3</label>
-    <div id="filter3">
-    <% flavours.forEach((icecream) => { %>
-      <input type="radio" name="flavour3" value="<%= icecream.name %>" id="<%= icecream.id %>"><%= icecream.name %><br>
-    <%  }) %> -->
-    <input type="submit" value="Save">
-  </form>
-  <input type="text" value="10" id="price" data-price="10">
-</section>
-
+<div class="container main">
+  <div class="row">
+    <div class="col m8 s12">
+      <h3 class="custom-text">Choose your most loved flavours!</h3>
+    </div>
+    <form class="col s12" action="new" method="post" id="order-form">
+      <div class="row">
+        <div class="col">
+          <input name="type" type="radio" id="cone-input" />
+          <label for="cone-input">Cone</label>
+        </div>
+        <div class="col">
+          <input name="type" type="radio" id="cup-input" />
+          <label for="cup-input">Cup</label>  
+        </div>
+      </div>   
+      <div class="row">
+        <div class="col">
+          <input type="checkbox" class="checkbox-custom" name="no_lactose" id="nolactose">
+          <label for="nolactose">No lactose</label>
+        </div>
+        <div class="col">
+          <input type="checkbox" class="checkbox-custom" name="no_egg" id="noegg">
+          <label for="noegg">No egg</label>
+        </div>
+        <div class="col">
+          <input type="checkbox" class="checkbox-custom" name="no_nuts" id="nonuts">
+          <label for="nonuts">No nuts</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ul class="flavour-list">
+            <% flavours.forEach((icecream) => { %>
+              <li class="item <%= icecream.flavour%>">
+                <a href="/flavours/<%= icecream.id%>"><div class="chip red lighten-4"><%= icecream.name %></div></a>
+              <label class="order-list">
+              <input type="radio" 
+                     name="flavour1" 
+                     value="<%= icecream.name %>" 
+                     id="<%= icecream.id %>"
+                     <% if(!icecream.hasLactose) { %>
+                     <%= "data-nolactose" %>
+                     <% } %>
+                     <% if(!icecream.hasEgg) { %>
+                     <%= "data-noegg" %>
+                     <% } %>
+                     <% if(!icecream.hasNuts) { %>
+                     <%= "data-nonuts" %>
+                     <% } %>
+              >
+              </label>
+              </li>
+              <%  }) %>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <input type="submit" value="Checkout" class="waves-effect waves-light red lighten-4 btn-large z-depth-0">
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
   $(function(){
-    $("#no-lactose").on('change', function(){
+    $("#nolactose").on('change', function(){
       $('[data-nolactose]').closest('label').toggle();
     });
-    $("#no-egg").on('change', function(){
+    $("#noegg").on('change', function(){
       $('[data-noegg]').closest('label').toggle();
     });
-    $("#no-nuts").on('change', function(){
+    $("#nonuts").on('change', function(){
       $('[data-nonuts]').closest('label').toggle();
     })
   });
 </script>
-
-
-
-
-
 
 
 

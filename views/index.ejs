@@ -1,21 +1,43 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/main.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-      <% if (!user) {%>
-        <a href="auth/login">Login</a>
-        <a href="/auth/signup">Sign up</a>
-      <%} else {%>
-        <a href="/auth/logout">Logout</a>
-        <% if (user.isAdmin) { %>
-          <a href="/flavours">Check our flavours here!</a>
-        <% } %>
-        <a href="/orders">Check your orders here!</a>
-      <% } %>
-  </body>
-</html>
+<% if (user) {%>
+  <nav>
+  <div class="nav-wrapper grey lighten-5">
+    <a href="/" class="brand-logo">
+      <span class="row">
+        <span class="col">
+          <img src="/images/icy-name.png" alt="Icy name icon" height=25>
+        </span>
+      </span>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="/flavours" class="grey-text">Admin</a>
+      </li>
+      <li>
+        <a href="/auth/logout" class="grey-text">Sign out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<% } %>
+
+<div class="container main">
+  <div class="row">
+    <div class="col m8 s12">
+      <img src="/images/icy.png" alt="Icy logo" class="icy-logo">
+      <h3 class="custom-text">Order on your own with no approach to the queue.</h3>
+    </div>
+  </div>
+  <% if (!user) {%>
+    <div class="row">
+      <div class="col">
+        <a href="auth/login" class="waves-effect waves-light red lighten-4 btn-large z-depth-0"><i class="material-icons left">person</i>Log in</a>
+      </div>
+      <div class="col">
+        <a href="/auth/signup" class="waves-effect waves-light red lighten-4 btn-large z-depth-0"><i class="material-icons left">person_add</i>Sign up</a>
+      </div>
+    </row>
+  <%} else {%>
+    <a href="/orders" class="waves-effect waves-light red lighten-4 btn-large z-depth-0">Get your ice cream!</a>
+  <% } %>
+</div>
+

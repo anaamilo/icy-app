@@ -1,17 +1,27 @@
-<form action="/auth/login" method="POST">
- <div>
-   <label for="username">Username:</label>
-   <input type="text" name="username">
- </div>
- <div>
-   <label for="password">Password:</label>
-   <input type="password" name="password">
- </div>
- <div>
-   <input type="submit" value="Log In">
- </div>
-</form>
+<div class="container main">
+  <form class="col s12" action="/auth/login" method="POST">
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <div class="row">
+          <div class="input-field">
+            <input id="username" type="text" class="validate" autocomplete="off" name="username">
+            <label for="username">User name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <input id="password" type="password" class="validate" autocomplete="off" name="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <input type="submit" class="waves-effect waves-light red lighten-4 btn-large z-depth-0" value="Log in">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 
 <% if (typeof errorMessage !== "undefined") { %>
-  <div class="error-message"><%= errorMessage %></div>
-<% } %>
+   <div class="error-message"><%= errorMessage %></div>
+ <% } %>
