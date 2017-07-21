@@ -35,6 +35,7 @@
     "express-session": "^1.15.3",
     "file-system": "^2.2.2",
     "materialize-css": "^0.100.0",
+    "mongoose": "^4.11.3",
     "morgan": "~1.8.1",
     "multer": "^1.3.0",
     "node-sass": "^4.5.3",
@@ -45,7 +46,6 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "mongoose": "^4.11.3",
     "nodemon": "^1.11.0"
   }
 }
